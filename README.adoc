@@ -1,7 +1,9 @@
 :icons: font
 :numbered:
-:title: AsciiDoctor GitHub Pages Action
+:title: AsciiDoctor PDF Converter Action
 ifdef::env-github[:outfilesuffix: .adoc]
+
+IMPORTANT: This is a cloned repository modified to enable conversion of multiple asciidoc files to pdf versions. Not enabled to use with github pages!
 
 ifdef::env-github,env-browser[]
 // Exibe ícones para os blocos como NOTE e IMPORTANT no GitHub
