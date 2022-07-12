@@ -1,0 +1,33 @@
+name: asciidoctor-pdf-pages
+author: Giuseppe Nardiello
+branding:
+  icon: book-open
+  color: blue
+description: 'Build AsciiDoc PDF Pages for each adoc into current repository branch'
+
+inputs:
+  asciidoctor_params:
+    description: 'Extra parameters to pass to the asciidoctor command to customize the process of building adoc files'
+    required: false
+  adoc_file_ext:
+    description: 'The extension you are using for your AsciiDoc Files'
+    default: '.adoc'
+    required: false
+  pre_build:
+    description: 'Any arbitrary shell command to be executed before the asciidoc build is started. Optional.'
+    default: 'echo "No pre build command provided."'
+    required: false
+  post_build:
+    description: 'Any arbitrary shell command to be executed after the asciidoc build is complete and before committing changes on working branch. Optional.'
+    default: 'echo "No post build command provided."'
+    required: false
+                  
+runs: 
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.working_branch }}
+    - ${{ inputs.asciidoctor_params }}
+    - ${{ inputs.adoc_file_ext }}
+    - ${{ inputs.pre_build }}
+    - ${{ inputs.post_build }}
