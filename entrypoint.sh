@@ -40,7 +40,7 @@ find . -name "*.pdf" -exec git add -f {} \;
 git config --global user.email "action@github.com"
 git config --global user.name "GitHub Action"
 
-MSG="Build $INPUT_ADOC_FILE_EXT Files for GitHub Pages from $GITHUB_SHA"
+MSG="Build $INPUT_ADOC_FILE_EXT Files for PDF conversion from $GITHUB_SHA"
 echo "Committing changes to gh-pages branch"
 git commit -m "$MSG" 1>/dev/null
 
