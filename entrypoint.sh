@@ -25,7 +25,7 @@ git checkout "$GITHUB_SHA" -B ${GITHUB_REF##*/}
 eval "$INPUT_PRE_BUILD"
 
 echo "Converting AsciiDoc files to HTML"
-find . -maxdepth 5 -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor-pdf -b pdf -a icons=font -a icon-set=pf $INPUT_ASCIIDOCTOR_PARAMS {} \;
+find . $INPUT_FIND_PARAMS -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor-pdf -b pdf -a icons=font -a icon-set=pf $INPUT_ASCIIDOCTOR_PARAMS {} \;
 find . -name "README.html" -execdir ln -s "README.html" "index.html" \;
 
 # Executes any post-processing command provided by the user, before changes are committed.
@@ -40,7 +40,7 @@ find . -name "*.pdf" -exec git add -f {} \;
 git config --global user.email "action@github.com"
 git config --global user.name "GitHub Action"
 
-MSG="Build $INPUT_ADOC_FILE_EXT Files for PDF conversion from $GITHUB_SHA"
+MSG="Convert $INPUT_ADOC_FILE_EXT Files into PDF from $GITHUB_SHA"
 echo "Committing changes to gh-pages branch"
 git commit -m "$MSG" 1>/dev/null
 

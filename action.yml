@@ -6,6 +6,10 @@ branding:
 description: 'Build AsciiDoc PDF Pages for each adoc into current repository branch'
 
 inputs:
+  find_params:
+    description: 'Extra parameters to pass to the find command to customize search criteria to select pdf to convert'
+    default: '-maxdepth 5'
+    required: false
   asciidoctor_params:
     description: 'Extra parameters to pass to the asciidoctor command to customize the process of building adoc files'
     required: false
