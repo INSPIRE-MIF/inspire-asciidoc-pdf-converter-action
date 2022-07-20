@@ -24,7 +24,7 @@ git checkout "$GITHUB_SHA" -B ${GITHUB_REF##*/}
 # If no command is provided, the default value is just an echo command.
 eval "$INPUT_PRE_BUILD"
 
-echo "Converting AsciiDoc files to HTML"
+echo "Converting AsciiDoc files to HTML and PDF"
 eval find . $INPUT_FIND_PARAMS -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor -b html $INPUT_ASCIIDOCTOR_PARAMS {} \\\;
 eval find . $INPUT_FIND_PARAMS -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor-pdf -b pdf -a icons=font -a icon-set=pf $INPUT_ASCIIDOCTOR_PARAMS {} \\\;
 find . -name "README.html" -execdir ln -s "README.html" "index.html" \;
@@ -36,6 +36,7 @@ eval "$INPUT_POST_BUILD"
 
 echo "Adding output files to ${GITHUB_REF##*/} branch."
 find . -name "*.pdf" -exec git add -f {} \;
+find . -name "*.html" -exec git add -f {} \;
 
 # Changes in gh-pages branch will be shown as the "GitHub Action" user.
 git config --global user.email "action@github.com"
