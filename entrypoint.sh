@@ -25,6 +25,7 @@ git checkout "$GITHUB_SHA" -B ${GITHUB_REF##*/}
 eval "$INPUT_PRE_BUILD"
 
 echo "Converting AsciiDoc files to HTML"
+eval find . $INPUT_FIND_PARAMS -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor -b html $INPUT_ASCIIDOCTOR_PARAMS {} \\\;
 eval find . $INPUT_FIND_PARAMS -name "*$INPUT_ADOC_FILE_EXT" -exec asciidoctor-pdf -b pdf -a icons=font -a icon-set=pf $INPUT_ASCIIDOCTOR_PARAMS {} \\\;
 find . -name "README.html" -execdir ln -s "README.html" "index.html" \;
 
