@@ -16,7 +16,7 @@ ifdef::env-github[]
 = {title}
 endif::[]
 
-A GitHub Action that recursively converts every `adoc` file to `pdf` and `html`, naming the files using the same name of the `adoc` file then pushing all generated pdf/html files to the `main` branch.
+A GitHub Action that recursively converts every `adoc` file to `pdf` and `html`, naming the files using the same name of the `adoc` file then pushing all generated pdf/html files to the `main` branch. In addition, it can be manually executed on the other branches.
 This Action is a customized version of the https://github.com/manoelcampos/asciidoctor-ghpages-action[AsciiDoctor GitHub Pages Action].
 
 WARNING - Keep in mind that every time the action is executed, the existing pdf/html files are overwritten. If you manually modify them, outside of the CI workflow, the content will be lost.
